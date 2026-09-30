@@ -48,7 +48,7 @@ img {
 .hero-copy {
   flex: 1 1 auto;
   min-width: 0;
-  padding-top: 8px;
+  padding-top: 80px;
 }
 
 h1 {
@@ -136,7 +136,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -18px;
+  margin-top: -50px;
 }
 
 .photo-wrap img {
