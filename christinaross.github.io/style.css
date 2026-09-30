@@ -200,6 +200,7 @@ h1 {
     width: 100%;
     justify-content: center;
     flex-basis: auto;
+    margin-top: 15px;
   }
 
   .photo-wrap img {

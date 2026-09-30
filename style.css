@@ -39,14 +39,16 @@ img {
 
 .hero {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 56px;
+  min-height: 420px;
 }
 
 .hero-copy {
   flex: 1 1 auto;
   min-width: 0;
+  padding-top: 8px;
 }
 
 h1 {
@@ -132,7 +134,9 @@ h1 {
 .photo-wrap {
   flex: 0 0 360px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6px;
 }
 
 .photo-wrap img {
@@ -143,6 +147,7 @@ h1 {
   background: var(--soft);
   border: 1px solid #efefef;
   box-shadow: 0 8px 24px rgba(17, 17, 17, 0.04);
+  display: block;
 }
 
 .divider {
