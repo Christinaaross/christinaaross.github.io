@@ -137,19 +137,19 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-top: 0;
+  padding: 0;
 }
 
 .photo-wrap img {
   width: 360px;
-  height: 360px;
-  object-fit: cover;
-  object-position: center top;
-  transform: scale(1.05);
-  border-radius: 50%;
-  background: var(--soft);
-  border: 1px solid #efefef;
-  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.04);
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
   display: block;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 .divider {
@@ -208,11 +208,13 @@ h1 {
     justify-content: center;
     flex-basis: auto;
     margin-top: 0;
+    padding: 0;
   }
 
   .photo-wrap img {
     width: min(72vw, 320px);
-    height: min(72vw, 320px);
+    height: auto;
+    max-height: none;
   }
 
   .divider {
