@@ -143,8 +143,8 @@ h1 {
   width: 360px;
   height: 360px;
   object-fit: cover;
-  object-position: center 42%;
-  transform: scale(1.18);
+  object-position: center top;
+  transform: scale(1.05);
   border-radius: 50%;
   background: var(--soft);
   border: 1px solid #efefef;
