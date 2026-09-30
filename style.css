@@ -136,15 +136,17 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 12px;
+  height: 360px;
+  margin-top: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .photo-wrap img {
   width: 360px;
-  height: auto;
-  max-height: 420px;
-  object-fit: contain;
+  height: 360px;
+  object-fit: cover;
+  object-position: center center;
   display: block;
   border: 0;
   box-shadow: none;
