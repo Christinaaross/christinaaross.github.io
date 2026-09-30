@@ -136,7 +136,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 6px;
+  margin-top: -18px;
 }
 
 .photo-wrap img {
@@ -205,6 +205,7 @@ h1 {
     width: 100%;
     justify-content: center;
     flex-basis: auto;
+    margin-top: 0;
   }
 
   .photo-wrap img {
