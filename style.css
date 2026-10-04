@@ -40,13 +40,13 @@ img {
 .hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 56px;
+  justify-content: center;
+  gap: 160px;
   min-height: 420px;
 }
 
 .hero-copy {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
   padding-top: 12px;
 }
@@ -132,21 +132,20 @@ h1 {
 }
 
 .photo-wrap {
-  flex: 0 0 360px;
+  flex: 0 0 300px;
+  align-self: flex-start;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 360px;
-  margin-top: 0;
+  margin-top: 50px;
   padding: 0;
-  overflow: hidden;
 }
 
 .photo-wrap img {
-  width: 360px;
-  height: 360px;
+  width: 300px;
+  height: auto;
+  aspect-ratio: 5 / 6;
   object-fit: cover;
-  object-position: center center;
+  object-position: center 40%;
   display: block;
   border: 0;
   box-shadow: none;
@@ -209,6 +208,7 @@ h1 {
     width: 100%;
     justify-content: center;
     flex-basis: auto;
+    align-self: center;
     margin-top: 0;
     padding: 0;
   }
