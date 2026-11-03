@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Christina Ross | Department of Computer Science, Rutgers-New Brunswick"
+    />
+    <title>Christina Ross</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero" aria-label="Profile header">
+        <div class="hero-copy">
+          <h1>Christina Ross</h1>
+          <p class="dept">Computer Science Graduate Student</p>
+          <p class="school">Rutgers University—New Brunswick</p>
+
+          <div class="credential-group">
+            <p class="credential-line"><span class="credential-label">M.S. in Computer Science</span></p>
+            <p class="credential-line"><span class="credential-muted">Currently pursuing · Expected 2027</span></p>
+            <p class="credential-line"><span class="credential-label">B.S. in Computer Science</span></p>
+            <p class="credential-line"><span class="credential-muted">May 2026 · Cum Laude</span></p>
+          </div>
+
+          <nav class="social-links" aria-label="Links">
+            <a href="https://www.linkedin.com/in/christina-a-ross-0234b2216/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="icon-circle">in</a>
+            <a href="#" aria-label="Education" class="icon-circle">edu</a>
+            <a href="#" aria-label="Resume" class="icon-circle">cv</a>
+            <a href="https://github.com/Christinaaross" target="_blank" rel="noreferrer" aria-label="GitHub" class="icon-circle">gh</a>
+          </nav>
+
+          <p class="profile-note">Visual mockup · social icons are placeholders</p>
+        </div>
+
+        <div class="photo-wrap">
+          <img src="profile-placeholder.svg" alt="Portrait of Christina Ross" />
+        </div>
+      </header>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <main>
+        <section class="about-section" aria-labelledby="about-me-heading">
+          <h2 id="about-me-heading">About Me</h2>
+          <p>
+            I am a researcher and computer scientist interested in building thoughtful,
+            human-centered systems that combine rigorous technical foundations with clear,
+            real-world impact. My work sits at the intersection of systems, data, and
+            intelligent design, with a focus on developing tools and methods that help
+            people understand, use, and benefit from technology in meaningful ways.
+          </p>
+        </section>
+
+        <section class="experience-section" aria-labelledby="experience-heading">
+          <div class="section-header">
+            <h2 id="experience-heading">Experience</h2>
+            <span class="position-count">02 Positions</span>
+          </div>
+
+          <div class="experience-list">
+            <details class="experience-item">
+              <summary>
+                <div class="summary-main">
+                  <p class="job-title">Data Engineering Intern</p>
+                  <p class="company-line">LS Direct · Suffern, NY</p>
+                </div>
+                <span class="chevron" aria-hidden="true"></span>
+              </summary>
+              <div class="details-content">
+                <ul>
+                  <li>Built and maintained data pipelines to support reporting and operational workflows.</li>
+                  <li>Collaborated with cross-functional teams to clean, validate, and transform data for analytics use cases.</li>
+                  <li>Improved process efficiency by documenting systems, identifying bottlenecks, and supporting automation opportunities.</li>
+                  <li>Technologies: Python, SQL, ETL workflows, data validation, cloud tools, and reporting systems.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="experience-item">
+              <summary>
+                <div class="summary-main">
+                  <p class="job-title">IT Intern / Associate</p>
+                  <p class="company-line">Information Technology</p>
+                </div>
+                <span class="chevron" aria-hidden="true"></span>
+              </summary>
+              <div class="details-content">
+                <ul>
+                  <li>Supported day-to-day IT operations, troubleshooting technical issues and coordinating solutions for users.</li>
+                  <li>Helped maintain documentation, device support processes, and service requests to improve responsiveness.</li>
+                  <li>Worked with teams to improve system reliability, user support workflows, and operational efficiency.</li>
+                  <li>Technologies: troubleshooting workflows, system support, documentation, and service operations.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="projects-section" aria-labelledby="projects-heading">
+          <div class="section-header projects-header">
+            <h2 id="projects-heading">Featured Projects</h2>
+          </div>
+
+          <div id="project-grid" class="project-grid" aria-live="polite"></div>
+
+          <div class="projects-footer">
+            <a href="#" class="view-all-link" aria-label="View all projects">
+              View All Projects <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="project-modal" class="project-modal" aria-hidden="true">
+      <div class="project-modal-backdrop" data-close-modal></div>
+      <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+        <button type="button" class="modal-close" aria-label="Close project details">×</button>
+        <div class="modal-preview" id="project-modal-preview"></div>
+        <div class="modal-body">
+          <p class="project-kicker">Project Overview</p>
+          <h3 id="project-modal-title"></h3>
+          <p id="project-modal-description"></p>
+
+          <div class="modal-section">
+            <h4>Key Features</h4>
+            <ul id="project-features"></ul>
+          </div>
+
+          <div class="modal-section">
+            <h4>Technologies</h4>
+            <div id="project-tech-tags" class="modal-tech-tags"></div>
+          </div>
+
+          <div class="modal-links">
+            <a id="project-github-link" href="#" target="_blank" rel="noreferrer">GitHub Repository</a>
+            <a id="project-demo-link" href="#" target="_blank" rel="noreferrer">Live Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const projects = [
+        {
+          id: "genai-flask-application",
+          title: "GenAI Flask Application",
+          description:
+            "AI-powered web application using IBM watsonx.ai to generate structured responses.",
+          technologies: ["Python", "Flask", "IBM watsonx.ai", "LangChain"],
+          github: "#",
+          demo: "#",
+          overview:
+            "This application combines a lightweight Flask backend with AI-driven prompting to generate structured, useful outputs for end users.",
+          features: [
+            "Prompt-based generation tailored to user requests",
+            "Structured response handling for cleaner downstream use",
+            "Integration with IBM watsonx.ai and LangChain primitives",
+            "Simple, scalable web interface for interaction and experimentation"
+          ],
+          previewLabel: "GenAI"
+        },
+        {
+          id: "threejs-game",
+          title: "3D Graphics Game",
+          description:
+            "Interactive 3D environment featuring animated characters, NPC behavior, and AI integration.",
+          technologies: ["Three.js", "JavaScript", "WebGL", "GLTF"],
+          github: "#",
+          demo: "#",
+          overview:
+            "A collaborative 3D environment where users explore a scene featuring animated entities, behavioral systems, and visually rich interactions.",
+          features: [
+            "3D scene construction using Three.js and WebGL",
+            "Animated characters and NPC behavior systems",
+            "Asset-driven design with GLTF models",
+            "Interactive environment built for exploration and play"
+          ],
+          previewLabel: "3D"
+        },
+        {
+          id: "trading-analysis-tools",
+          title: "Trading Analysis Tools",
+          description:
+            "Tools for analyzing financial markets, identifying patterns, and visualizing trading strategies.",
+          technologies: ["Python", "Data Analysis", "Visualization"],
+          github: "#",
+          demo: "#",
+          overview:
+            "This project focuses on extracting insight from market data through analysis, pattern review, and clear visual narratives for strategy exploration.",
+          features: [
+            "Financial data processing and exploratory analysis",
+            "Pattern identification for trade decisions",
+            "Visualization tools to depict trends and signals",
+            "Reusable workflows for market review and analysis"
+          ],
+          previewLabel: "Trading"
+        }
+      ];
+
+      const projectGrid = document.getElementById("project-grid");
+      const projectModal = document.getElementById("project-modal");
+      const projectModalTitle = document.getElementById("project-modal-title");
+      const projectModalDescription = document.getElementById("project-modal-description");
+      const projectModalPreview = document.getElementById("project-modal-preview");
+      const projectFeatures = document.getElementById("project-features");
+      const projectTechTags = document.getElementById("project-tech-tags");
+      const projectGithubLink = document.getElementById("project-github-link");
+      const projectDemoLink = document.getElementById("project-demo-link");
+
+      function createProjectCard(project) {
+        const card = document.createElement("article");
+        card.className = "project-card";
+        card.tabIndex = 0;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", `Open details for ${project.title}`);
+
+        const preview = document.createElement("div");
+        preview.className = "project-preview";
+        preview.innerHTML = `<span>${project.previewLabel}</span>`;
+
+        const content = document.createElement("div");
+        content.className = "project-content";
+        content.innerHTML = `
+          <h3>${project.title}</h3>
+          <p>${project.description}</p>
+          <div class="tech-tags">
+            ${project.technologies.map((tag) => `<span>${tag}</span>`).join("")}
+          </div>
+        `;
+
+        const openProject = () => openProjectDetails(project);
+        card.addEventListener("click", openProject);
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openProject();
+          }
+        });
+
+        card.appendChild(preview);
+        card.appendChild(content);
+        return card;
+      }
+
+      function openProjectDetails(project) {
+        projectModalTitle.textContent = project.title;
+        projectModalDescription.textContent = project.overview;
+        projectModalPreview.innerHTML = `<span>${project.previewLabel}</span>`;
+
+        projectFeatures.innerHTML = project.features
+          .map((feature) => `<li>${feature}</li>`)
+          .join("");
+
+        projectTechTags.innerHTML = project.technologies
+          .map((tag) => `<span>${tag}</span>`)
+          .join("");
+
+        projectGithubLink.href = project.github;
+        projectDemoLink.href = project.demo;
+
+        projectModal.classList.add("is-visible");
+        projectModal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeProjectDetails() {
+        projectModal.classList.remove("is-visible");
+        projectModal.setAttribute("aria-hidden", "true");
+      }
+
+      document.querySelectorAll("[data-close-modal]").forEach((button) => {
+        button.addEventListener("click", closeProjectDetails);
+      });
+
+      document.querySelector(".modal-close").addEventListener("click", closeProjectDetails);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && projectModal.classList.contains("is-visible")) {
+          closeProjectDetails();
+        }
+      });
+
+      projects.forEach((project) => {
+        projectGrid.appendChild(createProjectCard(project));
+      });
+    </script>
+  </body>
+</html>
