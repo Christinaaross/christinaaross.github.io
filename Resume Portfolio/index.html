@@ -125,26 +125,20 @@
       <div class="project-modal-backdrop" data-close-modal></div>
       <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
         <button type="button" class="modal-close" aria-label="Close project details">×</button>
-        <div class="modal-preview" id="project-modal-preview"></div>
-        <div class="modal-body">
-          <p class="project-kicker">Project Overview</p>
+
+        <div class="modal-header">
+          <div class="project-modal-category" id="project-modal-category"></div>
           <h3 id="project-modal-title"></h3>
-          <p id="project-modal-description"></p>
+          <p class="project-subtitle" id="project-modal-subtitle"></p>
+        </div>
 
-          <div class="modal-section">
-            <h4>Key Features</h4>
-            <ul id="project-features"></ul>
-          </div>
+        <div class="project-detail-tabs" id="project-detail-tabs"></div>
 
-          <div class="modal-section">
-            <h4>Technologies</h4>
-            <div id="project-tech-tags" class="modal-tech-tags"></div>
-          </div>
+        <div class="modal-content" id="project-tab-panels"></div>
 
-          <div class="modal-links">
-            <a id="project-github-link" href="#" target="_blank" rel="noreferrer">GitHub Repository</a>
-            <a id="project-demo-link" href="#" target="_blank" rel="noreferrer">Live Demo</a>
-          </div>
+        <div class="modal-links">
+          <a id="project-github-link" href="#" target="_blank" rel="noreferrer">GitHub Repository</a>
+          <a id="project-demo-link" href="#" target="_blank" rel="noreferrer">Live Demo</a>
         </div>
       </div>
     </div>
@@ -154,6 +148,7 @@
         {
           id: "genai-flask-application",
           title: "GenAI Flask Application",
+          category: "AI",
           description:
             "AI-powered web application using IBM watsonx.ai to generate structured responses.",
           technologies: ["Python", "Flask", "IBM watsonx.ai", "LangChain"],
@@ -172,6 +167,7 @@
         {
           id: "threejs-game",
           title: "3D Graphics Game",
+          category: "GRAPHICS",
           description:
             "Interactive 3D environment featuring animated characters, NPC behavior, and AI integration.",
           technologies: ["Three.js", "JavaScript", "WebGL", "GLTF"],
@@ -188,34 +184,109 @@
           previewLabel: "3D"
         },
         {
-          id: "trading-analysis-tools",
-          title: "Trading Analysis Tools",
+          id: "malware-detection-file-security",
+          title: "Malware Detection & File Security",
+          category: "CYBERSECURITY",
           description:
-            "Tools for analyzing financial markets, identifying patterns, and visualizing trading strategies.",
-          technologies: ["Python", "Data Analysis", "Visualization"],
+            "Engineered and tested a self-hosted malware detection pipeline integrated into QuietNets, featuring secure file quarantine, automated scanning, and access controls.",
+          technologies: ["Python", "ClamAV", "Linux", "FastAPI", "Supabase"],
           github: "#",
-          demo: "#",
+          demo: "https://quietnets.vercel.app",
           overview:
-            "This project focuses on extracting insight from market data through analysis, pattern review, and clear visual narratives for strategy exploration.",
-          features: [
-            "Financial data processing and exploratory analysis",
-            "Pattern identification for trade decisions",
-            "Visualization tools to depict trends and signals",
-            "Reusable workflows for market review and analysis"
-          ],
-          previewLabel: "Trading"
+            "This project addresses the core security challenge of safely handling uploaded files in a web application. I designed and implemented a self-hosted malware scanning pipeline for QuietNets that quarantines suspicious uploads, blocks unverified files, and enforces controlled release policies before content reaches end users.",
+          subtitle: "Independent Security Engineering Project",
+          realWorld:
+            "QuietNets is the working full-stack application where this security pipeline was implemented and tested. The system protects user file uploads within the application by validating content and enforcing controlled access before files are released.",
+          sections: {
+            overview: {
+              heading: "Project overview",
+              body: [
+                "Designed and deployed a self-hosted malware detection pipeline that scans uploaded files before allowing access to them.",
+                "The system combines asynchronous background processing, file quarantine, antivirus scanning, and database-level access controls to prevent malicious or unverified files from reaching users.",
+                "The workflow was implemented directly in QuietNets to protect real application file uploads while preserving a secure and auditable release process."
+              ],
+              bullets: [
+                "Developed a Python-based scanning worker and REST API for secure file handling.",
+                "Integrated ClamAV antivirus scanning with automated signature updates.",
+                "Implemented quarantine, file verification, and secure release workflows.",
+                "Deployed and hardened a Linux scanning environment for controlled execution."
+              ],
+              quietNets: {
+                title: "Real-World Application: QuietNets",
+                text: "This system protects file uploads in the QuietNets application, where files are validated in a secure pipeline before they are released to downstream users. The solution was designed to be practical, measurable, and production-aware while keeping the architecture focused on security and reliability."
+              }
+            },
+            architecture: {
+              heading: "System architecture",
+              flow: [
+                { title: "File upload", subtitle: "Next.js / Vercel", icon: "⇪" },
+                { title: "Private quarantine", subtitle: "Supabase Storage + PostgreSQL", icon: "🔒" },
+                { title: "Background worker", subtitle: "Oracle Linux · Python · FastAPI", icon: "⚙️" },
+                { title: "ClamAV scanning", subtitle: "Signature-based detection", icon: "🛡️" },
+                { title: "Verified release", subtitle: "Approved file or block", icon: "✅" }
+              ]
+            },
+            security: {
+              heading: "Security engineering controls",
+              items: [
+                ["Fail-closed architecture", "Unscanned, suspicious, or failed uploads cannot be released."],
+                ["HMAC-SHA256 authentication", "Signed worker requests with timestamps, key IDs, nonces, and replay protection."],
+                ["Least-privilege storage", "Private quarantine, Supabase Row Level Security, and server-only credentials."],
+                ["Linux hardening", "SELinux enforcing, local scanner binding, restricted Unix socket, and systemd services."],
+                ["File validation", "Size and content checks, archive protection, and SHA-256 integrity verification."],
+                ["Recovery controls", "Job leases, bounded retries, and recovery flow for worker or scanner interruptions."]
+              ]
+            },
+            testing: {
+              heading: "Security validation",
+              stats: [
+                ["75/75", "Scanner tests"],
+                ["50/50", "End-to-end tests"],
+                ["30/30", "Database policy tests"],
+                ["20/20", "Security unit tests"]
+              ],
+              adversarial: [
+                "EICAR antivirus test files, including ZIP-contained samples",
+                "Encrypted archives and decompression-bomb attempts",
+                "File type and content mismatches",
+                "Concurrent file uploads",
+                "Scanner outages, retry behavior, and crash recovery",
+                "Unauthorized file access and verified-file replacement attempts"
+              ],
+              note: "These are recorded results from the project’s test runs, not a formal security certification."
+            },
+            tech: {
+              heading: "Technologies and their roles",
+              rows: [
+                ["Python", "Background scanning worker and service orchestration."],
+                ["FastAPI / Uvicorn", "Local scanning API and request handling."],
+                ["ClamAV / clamd", "Signature-based malware detection."],
+                ["freshclam", "Antivirus signature updates."],
+                ["Oracle Linux", "Self-hosted scanning infrastructure."],
+                ["systemd", "Worker and scanner service management."],
+                ["SELinux", "Operating system access restrictions."],
+                ["Supabase / PostgreSQL", "Quarantine metadata, job state, and RLS."],
+                ["Next.js / TypeScript", "Secure upload and job-management endpoints."],
+                ["HMAC-SHA256", "Authenticated worker communications and request integrity." ]
+              ]
+            }
+          },
+          previewLabel: "🛡️"
         }
       ];
 
       const projectGrid = document.getElementById("project-grid");
       const projectModal = document.getElementById("project-modal");
       const projectModalTitle = document.getElementById("project-modal-title");
-      const projectModalDescription = document.getElementById("project-modal-description");
+      const projectModalSubtitle = document.getElementById("project-modal-subtitle");
       const projectModalPreview = document.getElementById("project-modal-preview");
-      const projectFeatures = document.getElementById("project-features");
-      const projectTechTags = document.getElementById("project-tech-tags");
+      const projectModalCategory = document.getElementById("project-modal-category");
+      const projectDetailTabs = document.getElementById("project-detail-tabs");
+      const projectTabPanels = document.getElementById("project-tab-panels");
       const projectGithubLink = document.getElementById("project-github-link");
       const projectDemoLink = document.getElementById("project-demo-link");
+      let currentProject = null;
+      let activeTab = "overview";
 
       function createProjectCard(project) {
         const card = document.createElement("article");
@@ -226,11 +297,12 @@
 
         const preview = document.createElement("div");
         preview.className = "project-preview";
-        preview.innerHTML = `<span>${project.previewLabel}</span>`;
+        preview.innerHTML = `<span class="project-preview-icon">${project.previewLabel}</span>`;
 
         const content = document.createElement("div");
         content.className = "project-content";
         content.innerHTML = `
+          <div class="project-category">${project.category}</div>
           <h3>${project.title}</h3>
           <p>${project.description}</p>
           <div class="tech-tags">
@@ -252,22 +324,166 @@
         return card;
       }
 
+      function renderTabs() {
+        const tabs = [
+          { id: "overview", label: "Overview" },
+          { id: "architecture", label: "Architecture" },
+          { id: "security", label: "Security" },
+          { id: "testing", label: "Testing" },
+          { id: "tech", label: "Tech Stack" }
+        ];
+
+        projectDetailTabs.innerHTML = tabs
+          .map(
+            (tab) => `
+              <button type="button" class="${tab.id === activeTab ? "active" : ""}" data-tab="${tab.id}">
+                ${tab.label}
+              </button>
+            `
+          )
+          .join("");
+
+        projectDetailTabs.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", () => {
+            activeTab = button.dataset.tab;
+            renderTabs();
+            renderTabContent();
+          });
+        });
+      }
+
+      function renderTabContent() {
+        if (!currentProject) return;
+        const sections = currentProject.sections;
+        const sectionContent = sections[activeTab];
+
+        if (!sectionContent) return;
+
+        const generated = [];
+
+        if (activeTab === "overview") {
+          generated.push(`
+            <div class="tab-panel active">
+              <div class="project-kicker">Overview</div>
+              <h4>${sectionContent.heading}</h4>
+              ${sectionContent.body.map((paragraph) => `<p>${paragraph}</p>`).join("")}
+              <div class="project-quietnets">
+                <h5>${sectionContent.quietNets.title}</h5>
+                <p>${sectionContent.quietNets.text}</p>
+              </div>
+              <div class="modal-section">
+                <h4>Key contributions</h4>
+                <ul>
+                  ${sectionContent.bullets.map((item) => `<li>${item}</li>`).join("")}
+                </ul>
+              </div>
+            </div>
+          `);
+        }
+
+        if (activeTab === "architecture") {
+          generated.push(`
+            <div class="tab-panel active">
+              <div class="project-kicker">Architecture</div>
+              <h4>${sectionContent.heading}</h4>
+              <div class="architecture-flow">
+                ${sectionContent.flow
+                  .map(
+                    (item, index) => `
+                      <div>
+                        <div class="arch-box">
+                          <div class="icon">${item.icon}</div>
+                          <strong>${item.title}</strong>
+                          <span>${item.subtitle}</span>
+                        </div>
+                        ${index < sectionContent.flow.length - 1 ? '<div class="arch-arrow">↓</div>' : ""}
+                      </div>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `);
+        }
+
+        if (activeTab === "security") {
+          generated.push(`
+            <div class="tab-panel active">
+              <div class="project-kicker">Security Engineering</div>
+              <h4>${sectionContent.heading}</h4>
+              <div class="security-checklist">
+                ${sectionContent.items
+                  .map(
+                    ([title, text]) => `
+                      <div class="issue"><strong>${title}</strong><span>${text}</span></div>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `);
+        }
+
+        if (activeTab === "testing") {
+          generated.push(`
+            <div class="tab-panel active">
+              <div class="project-kicker">Security Testing</div>
+              <h4>${sectionContent.heading}</h4>
+              <div class="test-grid">
+                ${sectionContent.stats
+                  .map(
+                    ([value, label]) => `
+                      <div class="test-stat">
+                        <strong>${value}</strong>
+                        <span>${label}</span>
+                      </div>
+                    `
+                  )
+                  .join("")}
+              </div>
+              <div class="modal-section">
+                <h4>Attack and failure scenarios tested</h4>
+                <ul class="adversarial-list">
+                  ${sectionContent.adversarial.map((item) => `<li>${item}</li>`).join("")}
+                </ul>
+              </div>
+              <p class="note-text">${sectionContent.note}</p>
+            </div>
+          `);
+        }
+
+        if (activeTab === "tech") {
+          generated.push(`
+            <div class="tab-panel active">
+              <div class="project-kicker">Technologies</div>
+              <h4>${sectionContent.heading}</h4>
+              <div class="tech-table">
+                ${sectionContent.rows
+                  .map(
+                    ([tech, purpose]) => `
+                      <div class="tech-row"><strong>${tech}</strong><span>${purpose}</span></div>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `);
+        }
+
+        projectTabPanels.innerHTML = generated.join("");
+      }
+
       function openProjectDetails(project) {
+        currentProject = project;
+        activeTab = "overview";
         projectModalTitle.textContent = project.title;
-        projectModalDescription.textContent = project.overview;
+        projectModalSubtitle.textContent = project.subtitle || "Independent Security Engineering Project";
         projectModalPreview.innerHTML = `<span>${project.previewLabel}</span>`;
-
-        projectFeatures.innerHTML = project.features
-          .map((feature) => `<li>${feature}</li>`)
-          .join("");
-
-        projectTechTags.innerHTML = project.technologies
-          .map((tag) => `<span>${tag}</span>`)
-          .join("");
-
+        projectModalCategory.textContent = project.category;
         projectGithubLink.href = project.github;
         projectDemoLink.href = project.demo;
-
+        renderTabs();
+        renderTabContent();
         projectModal.classList.add("is-visible");
         projectModal.setAttribute("aria-hidden", "false");
       }
