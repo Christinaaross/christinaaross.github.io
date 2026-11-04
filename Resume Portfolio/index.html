@@ -186,6 +186,96 @@
           previewLabel: "3D"
         },
         {
+          id: "malware-detection-file-security",
+          title: "Malware Detection & File Security",
+          category: "CYBERSECURITY",
+          description:
+            "Engineered and tested a self-hosted malware detection pipeline integrated into QuietNets, featuring secure file quarantine, automated scanning, and access controls.",
+          technologies: ["Python", "ClamAV", "Linux", "FastAPI", "Supabase"],
+          github: "#",
+          demo: "https://quietnets.vercel.app",
+          overview:
+            "This project addresses the core security challenge of safely handling uploaded files in a web application. I designed and implemented a self-hosted malware scanning pipeline for QuietNets that quarantines suspicious uploads, blocks unverified files, and enforces controlled release policies before content reaches end users.",
+          subtitle: "Independent Security Engineering Project",
+          realWorld:
+            "QuietNets is the working full-stack application where this security pipeline was implemented and tested. The system protects user file uploads within the application by validating content and enforcing controlled access before files are released.",
+          sections: {
+            overview: {
+              heading: "Project overview",
+              body: [
+                "Designed and deployed a self-hosted malware detection pipeline that scans uploaded files before allowing access to them.",
+                "The system combines asynchronous background processing, file quarantine, antivirus scanning, and database-level access controls to prevent malicious or unverified files from reaching users.",
+                "The workflow was implemented directly in QuietNets to protect real application file uploads while preserving a secure and auditable release process."
+              ],
+              bullets: [
+                "Developed a Python-based scanning worker and REST API for secure file handling.",
+                "Integrated ClamAV antivirus scanning with automated signature updates.",
+                "Implemented quarantine, file verification, and secure release workflows.",
+                "Deployed and hardened a Linux scanning environment for controlled execution."
+              ],
+              quietNets: {
+                title: "Real-World Application: QuietNets",
+                text: "This system protects file uploads in the QuietNets application, where files are validated in a secure pipeline before they are released to downstream users. The solution was designed to be practical, measurable, and production-aware while keeping the architecture focused on security and reliability."
+              }
+            },
+            architecture: {
+              heading: "System architecture",
+              flow: [
+                { title: "File upload", subtitle: "Next.js / Vercel", icon: "⇪" },
+                { title: "Private quarantine", subtitle: "Supabase Storage + PostgreSQL", icon: "🔒" },
+                { title: "Background worker", subtitle: "Oracle Linux · Python · FastAPI", icon: "⚙️" },
+                { title: "ClamAV scanning", subtitle: "Signature-based detection", icon: "🛡️" },
+                { title: "Verified release", subtitle: "Approved file or block", icon: "✅" }
+              ]
+            },
+            security: {
+              heading: "Security engineering controls",
+              items: [
+                ["Fail-closed architecture", "Unscanned, suspicious, or failed uploads cannot be released."],
+                ["HMAC-SHA256 authentication", "Signed worker requests with timestamps, key IDs, nonces, and replay protection."],
+                ["Least-privilege storage", "Private quarantine, Supabase Row Level Security, and server-only credentials."],
+                ["Linux hardening", "SELinux enforcing, local scanner binding, restricted Unix socket, and systemd services."],
+                ["File validation", "Size and content checks, archive protection, and SHA-256 integrity verification."],
+                ["Recovery controls", "Job leases, bounded retries, and recovery flow for worker or scanner interruptions."]
+              ]
+            },
+            testing: {
+              heading: "Security validation",
+              stats: [
+                ["75/75", "Scanner tests"],
+                ["50/50", "End-to-end tests"],
+                ["30/30", "Database policy tests"],
+                ["20/20", "Security unit tests"]
+              ],
+              adversarial: [
+                "EICAR antivirus test files, including ZIP-contained samples",
+                "Encrypted archives and decompression-bomb attempts",
+                "File type and content mismatches",
+                "Concurrent file uploads",
+                "Scanner outages, retry behavior, and crash recovery",
+                "Unauthorized file access and verified-file replacement attempts"
+              ],
+              note: "These are recorded results from the project’s test runs, not a formal security certification."
+            },
+            tech: {
+              heading: "Technologies and their roles",
+              rows: [
+                ["Python", "Background scanning worker and service orchestration."],
+                ["FastAPI / Uvicorn", "Local scanning API and request handling."],
+                ["ClamAV / clamd", "Signature-based malware detection."],
+                ["freshclam", "Antivirus signature updates."],
+                ["Oracle Linux", "Self-hosted scanning infrastructure."],
+                ["systemd", "Worker and scanner service management."],
+                ["SELinux", "Operating system access restrictions."],
+                ["Supabase / PostgreSQL", "Quarantine metadata, job state, and RLS."],
+                ["Next.js / TypeScript", "Secure upload and job-management endpoints."],
+                ["HMAC-SHA256", "Authenticated worker communications and request integrity."]
+              ]
+            }
+          },
+          previewLabel: "🛡️"
+        },
+        {
           id: "quietnets-productivity-platform",
           title: "QuietNets — Productivity & Engineering Platform",
           category: "FULL-STACK DEVELOPMENT",
