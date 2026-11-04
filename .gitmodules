@@ -1,0 +1,3 @@
+[submodule "projects/CS550_Project"]
+	path = projects/CS550_Project
+	url = https://github.com/Colossus-MKII/CS550_Project.git
