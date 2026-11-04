@@ -33,12 +33,10 @@
 
           <nav class="social-links" aria-label="Links">
             <a href="https://www.linkedin.com/in/christina-a-ross-0234b2216/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="icon-circle">in</a>
-            <a href="#" aria-label="Education" class="icon-circle">edu</a>
             <a href="#" aria-label="Resume" class="icon-circle">cv</a>
             <a href="https://github.com/Christinaaross" target="_blank" rel="noreferrer" aria-label="GitHub" class="icon-circle">gh</a>
           </nav>
 
-          <p class="profile-note">Visual mockup · social icons are placeholders</p>
         </div>
 
         <div class="photo-wrap">
@@ -52,11 +50,15 @@
         <section class="about-section" aria-labelledby="about-me-heading">
           <h2 id="about-me-heading">About Me</h2>
           <p>
-            I am a researcher and computer scientist interested in building thoughtful,
-            human-centered systems that combine rigorous technical foundations with clear,
-            real-world impact. My work sits at the intersection of systems, data, and
-            intelligent design, with a focus on developing tools and methods that help
-            people understand, use, and benefit from technology in meaningful ways.
+            I'm a full-stack engineer and Computer Science graduate student at Rutgers University with a curiosity that rarely stays in one lane.
+          </p>
+          <br>
+          <p>
+            My experience spans software development, data engineering, IT, cybersecurity, and AI/ML. I enjoy understanding how different technologies work, how they connect, and how to bring them together to build something useful. Whether I'm developing a full-stack application, automating a workflow, or engineering security infrastructure, I like coming up with solutions to real world problems.
+          </p>
+          <br> 
+          <p>
+            I've always liked the idea behind the saying, "A jack of all trades is a master of none, but oftentimes better than a master of one." To me, being a well-rounded engineer isn't about knowing a little of everything. It's about having the versatility to approach problems from different angles and the curiosity to keep learning.
           </p>
         </section>
 
@@ -110,7 +112,31 @@
             <h2 id="projects-heading">Featured Projects</h2>
           </div>
 
-          <div id="project-grid" class="project-grid" aria-live="polite"></div>
+          <div class="project-carousel" aria-label="Featured projects carousel">
+            <button
+              type="button"
+              class="project-nav project-nav-prev"
+              id="project-nav-prev"
+              aria-label="Previous project"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+
+            <div class="project-stage">
+              <div id="project-grid" class="project-grid" aria-live="polite"></div>
+            </div>
+
+            <button
+              type="button"
+              class="project-nav project-nav-next"
+              id="project-nav-next"
+              aria-label="Next project"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div class="project-pagination" id="project-pagination" aria-label="Project carousel pages"></div>
 
           <div class="projects-footer">
             <a href="#" class="view-all-link" aria-label="View all projects">
@@ -182,6 +208,90 @@
             "Interactive environment built for exploration and play"
           ],
           previewLabel: "3D"
+        },
+        {
+          id: "quietnets",
+          title: "QuietNets",
+          category: "FULL STACK",
+          description:
+            "Secure collaboration platform for private messaging, file sharing, and trusted user workflows.",
+          technologies: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Auth"],
+          github: "#",
+          demo: "https://quietnets.vercel.app",
+          overview:
+            "QuietNets is a full-stack application focused on secure collaboration with private communication, controlled file-sharing, and reliable user access patterns.",
+          subtitle: "Security-first collaboration platform",
+          sections: {
+            overview: {
+              heading: "Project overview",
+              body: [
+                "QuietNets was designed as a secure collaboration and file-sharing platform with strong emphasis on user trust, access control, and privacy-aware workflows.",
+                "The application brings together messaging, secure content exchange, and user account systems in a single experience shaped around reliability and safe handling of uploaded data.",
+                "I focused on designing a platform that balances usability with production-level security practices and system resilience."
+              ],
+              bullets: [
+                "Built a full-stack app architecture for secure user collaboration and file exchange.",
+                "Implemented access control patterns and privacy-first workflow design.",
+                "Connected frontend, API, and storage logic into one cohesive user experience.",
+                "Prepared the app for secure handling of uploaded content and account-driven interactions."
+              ],
+              quietNets: {
+                title: "Product focus",
+                text: "QuietNets is a user-facing platform that combines secure communication and file handling in an approachable, collaborative experience while maintaining a strong engineering emphasis on safety and reliability."
+              }
+            },
+            architecture: {
+              heading: "System architecture",
+              flow: [
+                { title: "Frontend", subtitle: "Next.js / TypeScript", icon: "🖥️" },
+                { title: "API layer", subtitle: "Secure request handling", icon: "⚙️" },
+                { title: "Data storage", subtitle: "Supabase + PostgreSQL", icon: "🗄️" },
+                { title: "Access control", subtitle: "RLS and auth policies", icon: "🔐" },
+                { title: "User workflows", subtitle: "Messaging and file sharing", icon: "✅" }
+              ]
+            },
+            security: {
+              heading: "Security and access considerations",
+              items: [
+                ["Authentication-first workflows", "User actions are designed around verified identities and protected routes."],
+                ["Least-privilege access", "Permissions are scoped to the minimum necessary access for each workflow."],
+                ["Secure file handling", "File uploads and release paths are treated as sensitive operations with validation controls."],
+                ["Operational hardening", "Application logic and infrastructure are structured to support reliability and safer deployments."],
+                ["Privacy-aware product design", "The system is built around trusted interactions and controlled data visibility."],
+                ["Audit-friendly architecture", "Data flows and user actions are designed to be understandable, trackable, and maintainable."]
+              ]
+            },
+            testing: {
+              heading: "Quality and validation",
+              stats: [
+                ["UI flows", "User experience checks"],
+                ["Auth checks", "Access validation"],
+                ["Data flows", "Storage and request monitoring"],
+                ["Release review", "Security-minded verification"]
+              ],
+              adversarial: [
+                "Unauthorized access attempts and route validation",
+                "Unverified file or content flows",
+                "Permission edge cases across account roles",
+                "User workflow validation for secure interaction paths",
+                "Operational failure checks for resilient handling",
+                "Security review of upload and release behavior"
+              ],
+              note: "This project emphasizes realistic product security patterns, production-minded design, and maintainable collaborative workflows."
+            },
+            tech: {
+              heading: "Technologies and their roles",
+              rows: [
+                ["Next.js", "Frontend application and route-based interaction layer."],
+                ["TypeScript", "Strongly typed application logic and maintainability."],
+                ["Supabase", "Authentication, storage, and data-layer integration."],
+                ["PostgreSQL", "Structured data storage and relational application data."],
+                ["Row Level Security", "Granular access controls for protected data."],
+                ["Auth flows", "Secure user sign-in and permission-driven workflows."]
+              ]
+            }
+          },
+          previewLabel: "QN"
         },
         {
           id: "malware-detection-file-security",
@@ -284,15 +394,120 @@
       const projectTabPanels = document.getElementById("project-tab-panels");
       const projectGithubLink = document.getElementById("project-github-link");
       const projectDemoLink = document.getElementById("project-demo-link");
+      const projectPagination = document.getElementById("project-pagination");
+      const projectNavPrev = document.getElementById("project-nav-prev");
+      const projectNavNext = document.getElementById("project-nav-next");
       let currentProject = null;
       let activeTab = "overview";
+      let activeProjectIndex = 0;
+      let dragStartX = 0;
+      let dragOffset = 0;
+      let isDragging = false;
 
-      function createProjectCard(project) {
+      function getProjectSections(project) {
+        if (project.sections) {
+          return project.sections;
+        }
+
+        return {
+          overview: {
+            heading: "Project overview",
+            body: [
+              project.overview || project.description,
+              "This project highlights the implementation approach, technical decisions, and the resulting user experience."
+            ],
+            bullets: Array.isArray(project.features) ? project.features : [project.description],
+            quietNets: {
+              title: "Project highlights",
+              text: project.description
+            }
+          },
+          architecture: {
+            heading: "Implementation approach",
+            flow: [
+              { title: "Frontend", subtitle: "User experience and interaction design", icon: "🖥️" },
+              { title: "Logic layer", subtitle: "Application behavior and integration pattern", icon: "⚙️" },
+              { title: "Core stack", subtitle: "Technologies used in the build", icon: "🧩" }
+            ]
+          },
+          security: {
+            heading: "Key implementation notes",
+            items: [
+              ["Product focus", project.description],
+              ["Architecture", "Built to support clean interaction flows and maintainable implementation patterns."],
+              ["Technical stack", project.technologies.join(", ") + "."],
+              ["Outcome", "Designed to create a useful, polished demo or deployable application experience."]
+            ]
+          },
+          testing: {
+            heading: "Validation and quality",
+            stats: [
+              ["Build", "Implementation-focused"],
+              ["UX", "User-facing design"],
+              ["Code", "Reusable structure"],
+              ["Outcome", "Working experience"]
+            ],
+            adversarial: [
+              "Functional validation of core project behavior",
+              "Interface review for usability and clarity",
+              "Architecture review for maintainability and extensibility",
+              "Testing across the feature set and user interactions"
+            ],
+            note: "This project retains the same portfolio content while surfacing the core implementation details in the detail modal."
+          },
+          tech: {
+            heading: "Technologies used",
+            rows: (project.technologies || []).map((tech) => [tech, "Used in the final project implementation."])
+          }
+        };
+      }
+
+      function moveProject(step) {
+        activeProjectIndex = (activeProjectIndex + step + projects.length) % projects.length;
+        updateProjectCarousel();
+      }
+
+      // The active project's dot always sits in the middle, with the
+      // neighbouring projects on either side so the carousel reads as a loop.
+      function updatePagination() {
+        const reach = Math.floor(projects.length / 2);
+        const offsets = [];
+        for (let offset = -reach; offset <= reach; offset += 1) {
+          offsets.push(offset);
+        }
+
+        projectPagination.innerHTML = offsets
+          .map((offset) => {
+            const index = (activeProjectIndex + offset + projects.length) % projects.length;
+            const distance = Math.abs(offset);
+            return `
+              <button
+                type="button"
+                class="project-page-indicator ${offset === 0 ? "is-active" : ""}"
+                style="opacity: ${offset === 0 ? 1 : Math.max(0.35, 1 - distance * 0.3)}"
+                aria-label="${offset === 0 ? "Current project" : `Go to ${projects[index].title}`}"
+                ${offset === 0 ? 'aria-current="true"' : ""}
+                data-step="${offset}"
+              ></button>
+            `;
+          })
+          .join("");
+
+        projectPagination.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", () => {
+            moveProject(Number(button.dataset.step));
+          });
+        });
+      }
+
+      function createProjectCard(project, index) {
         const card = document.createElement("article");
         card.className = "project-card";
+        card.dataset.index = String(index);
         card.tabIndex = 0;
         card.setAttribute("role", "button");
-        card.setAttribute("aria-label", `Open details for ${project.title}`);
+        card.setAttribute("aria-label", `Show ${project.title}`);
+        card.setAttribute("aria-current", index === activeProjectIndex ? "true" : "false");
 
         const preview = document.createElement("div");
         preview.className = "project-preview";
@@ -307,20 +522,119 @@
           <div class="tech-tags">
             ${project.technologies.map((tag) => `<span>${tag}</span>`).join("")}
           </div>
+          <div class="project-card-actions">
+            <button type="button" class="project-explore-button">Explore Project</button>
+          </div>
         `;
 
-        const openProject = () => openProjectDetails(project);
-        card.addEventListener("click", openProject);
-        card.addEventListener("keydown", (event) => {
+        const exploreButton = content.querySelector(".project-explore-button");
+        exploreButton.tabIndex = 0;
+        exploreButton.onclick = (event) => {
+          if (event.button !== undefined && event.button !== 0) {
+            return;
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+          activeProjectIndex = index;
+          updateProjectCarousel();
+          openProjectDetails(project);
+        };
+
+        exploreButton.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            openProject();
+            event.stopPropagation();
+            activeProjectIndex = index;
+            updateProjectCarousel();
+            openProjectDetails(project);
+          }
+        });
+
+        card.onclick = (event) => {
+          if (event.button !== undefined && event.button !== 0) {
+            return;
+          }
+
+          if (event.target && event.target.closest(".project-explore-button")) {
+            return;
+          }
+
+          if (index !== activeProjectIndex) {
+            activeProjectIndex = index;
+            updateProjectCarousel();
+          }
+
+          openProjectDetails(project);
+        };
+
+        card.addEventListener("focus", () => {
+          if (index !== activeProjectIndex) {
+            activeProjectIndex = index;
+            updateProjectCarousel();
+          }
+        });
+
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            moveProject(-1);
+          }
+
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            moveProject(1);
+          }
+
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            event.stopPropagation();
+            if (index !== activeProjectIndex) {
+              activeProjectIndex = index;
+              updateProjectCarousel();
+            }
+            openProjectDetails(project);
           }
         });
 
         card.appendChild(preview);
         card.appendChild(content);
         return card;
+      }
+
+      function updateProjectCarousel() {
+        const cards = Array.from(projectGrid.children);
+
+        cards.forEach((card, cardIndex) => {
+          const offset = ((cardIndex - activeProjectIndex + projects.length) % projects.length);
+          const normalizedOffset = offset > projects.length / 2 ? offset - projects.length : offset;
+          const absOffset = Math.abs(normalizedOffset);
+          const isVisible = absOffset <= 4;
+          const isCenter = normalizedOffset === 0;
+
+          card.style.opacity = isVisible ? String(Math.max(0.22, 1 - absOffset * 0.18)) : "0";
+          card.style.visibility = isVisible ? "visible" : "hidden";
+          card.style.pointerEvents = isVisible ? "auto" : "none";
+          card.style.zIndex = String(100 - absOffset);
+
+          if (!isVisible) {
+            card.style.transform = "translate(-50%, -50%) translateX(0px) translateZ(-240px) rotateY(0deg) scale(0.7)";
+            return;
+          }
+
+          const offsetX = normalizedOffset * 220 + dragOffset * 0.28;
+          const translateZ = isCenter ? 200 : 90 - absOffset * 40;
+          const rotateY = normalizedOffset * -34;
+          const scale = isCenter ? 1 : 1 - absOffset * 0.1;
+          const yOffset = isCenter ? 0 : absOffset * 10;
+
+          card.style.transform = `translate(-50%, -50%) translateX(${offsetX}px) translateY(${yOffset}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+          card.classList.toggle("is-active", isCenter);
+          card.classList.toggle("is-side", !isCenter);
+          card.setAttribute("aria-current", isCenter ? "true" : "false");
+        });
+
+        updatePagination();
       }
 
       function renderTabs() {
@@ -353,7 +667,7 @@
 
       function renderTabContent() {
         if (!currentProject) return;
-        const sections = currentProject.sections;
+        const sections = getProjectSections(currentProject);
         const sectionContent = sections[activeTab];
 
         if (!sectionContent) return;
@@ -476,7 +790,7 @@
         currentProject = project;
         activeTab = "overview";
         projectModalTitle.textContent = project.title;
-        projectModalSubtitle.textContent = project.subtitle || "Independent Security Engineering Project";
+        projectModalSubtitle.textContent = project.subtitle || project.description;
         projectModalCategory.textContent = project.category;
         projectGithubLink.href = project.github;
         projectDemoLink.href = project.demo;
@@ -501,11 +815,113 @@
         if (event.key === "Escape" && projectModal.classList.contains("is-visible")) {
           closeProjectDetails();
         }
+
+        if (event.key === "ArrowLeft") {
+          moveProject(-1);
+        }
+
+        if (event.key === "ArrowRight") {
+          moveProject(1);
+        }
       });
 
-      projects.forEach((project) => {
-        projectGrid.appendChild(createProjectCard(project));
+      projectNavPrev.addEventListener("click", () => moveProject(-1));
+      projectNavNext.addEventListener("click", () => moveProject(1));
+
+      // Only treat the gesture as a drag once the pointer moves past a small
+      // threshold, so plain clicks still reach the card and its button.
+      const DRAG_THRESHOLD = 8;
+      let pointerIsDown = false;
+      let suppressNextClick = false;
+
+      projectGrid.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) return;
+        pointerIsDown = true;
+        isDragging = false;
+        suppressNextClick = false;
+        dragStartX = event.clientX;
+        dragOffset = 0;
       });
+
+      projectGrid.addEventListener("pointermove", (event) => {
+        if (!pointerIsDown || event.buttons === 0) {
+          pointerIsDown = false;
+          return;
+        }
+        const deltaX = event.clientX - dragStartX;
+
+        if (!isDragging && Math.abs(deltaX) > DRAG_THRESHOLD) {
+          isDragging = true;
+          projectGrid.setPointerCapture(event.pointerId);
+        }
+
+        if (!isDragging) return;
+        dragOffset = deltaX;
+        updateProjectCarousel();
+      });
+
+      projectGrid.addEventListener("pointerup", (event) => {
+        if (!pointerIsDown) return;
+        pointerIsDown = false;
+
+        if (!isDragging) return;
+
+        if (Math.abs(event.clientX - dragStartX) > 60) {
+          moveProject(event.clientX < dragStartX ? 1 : -1);
+        }
+
+        suppressNextClick = true;
+        dragOffset = 0;
+        isDragging = false;
+        updateProjectCarousel();
+      });
+
+      projectGrid.addEventListener("pointercancel", () => {
+        pointerIsDown = false;
+        if (!isDragging) return;
+        dragOffset = 0;
+        isDragging = false;
+        updateProjectCarousel();
+      });
+
+      // Swallow the click that follows a drag so swiping doesn't open the modal.
+      projectGrid.addEventListener(
+        "click",
+        (event) => {
+          if (suppressNextClick) {
+            suppressNextClick = false;
+            event.stopPropagation();
+            event.preventDefault();
+          }
+        },
+        true
+      );
+
+      projects.forEach((project, index) => {
+        projectGrid.appendChild(createProjectCard(project, index));
+      });
+
+      // The centre card is pushed toward the viewer (translateZ 200 with a
+      // 1800px perspective), so it renders ~12.5% larger than its layout size.
+      // Size the stage to fit that, plus breathing room above and below.
+      const projectStage = document.querySelector(".project-stage");
+      const STAGE_PERSPECTIVE = 1800;
+      const CENTER_CARD_Z = 200;
+      const STAGE_BREATHING_ROOM = 5;
+
+      function fitStageToCards() {
+        const tallestCard = Math.max(...Array.from(projectGrid.children, (card) => card.offsetHeight));
+        const projectedScale = STAGE_PERSPECTIVE / (STAGE_PERSPECTIVE - CENTER_CARD_Z);
+        projectStage.style.height = `${Math.ceil(tallestCard * projectedScale + STAGE_BREATHING_ROOM * 2)}px`;
+      }
+
+      fitStageToCards();
+      window.addEventListener("resize", fitStageToCards);
+      if (document.fonts) {
+        document.fonts.ready.then(fitStageToCards);
+      }
+
+      updateProjectCarousel();
     </script>
   </body>
 </html>
