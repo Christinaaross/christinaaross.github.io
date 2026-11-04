@@ -279,7 +279,6 @@
       const projectModal = document.getElementById("project-modal");
       const projectModalTitle = document.getElementById("project-modal-title");
       const projectModalSubtitle = document.getElementById("project-modal-subtitle");
-      const projectModalPreview = document.getElementById("project-modal-preview");
       const projectModalCategory = document.getElementById("project-modal-category");
       const projectDetailTabs = document.getElementById("project-detail-tabs");
       const projectTabPanels = document.getElementById("project-tab-panels");
@@ -478,7 +477,6 @@
         activeTab = "overview";
         projectModalTitle.textContent = project.title;
         projectModalSubtitle.textContent = project.subtitle || "Independent Security Engineering Project";
-        projectModalPreview.innerHTML = `<span>${project.previewLabel}</span>`;
         projectModalCategory.textContent = project.category;
         projectGithubLink.href = project.github;
         projectDemoLink.href = project.demo;
