@@ -376,12 +376,41 @@
       let currentProject = null;
       let activeTab = "overview";
 
-      function createProjectCard(project) {
+      let selectedProjectIndex = 0;
+      let touchStartX = 0;
+
+      function updateProjectStack() {
+        const cards = [...projectGrid.querySelectorAll(".project-card")];
+        const total = cards.length;
+
+        cards.forEach((card, index) => {
+          const offset = (((index - selectedProjectIndex) % total) + total) % total;
+          const normalized = offset > total / 2 ? offset - total : offset;
+          const isActive = normalized === 0;
+          const abs = Math.abs(normalized);
+          const translateX = normalized * (window.innerWidth <= 720 ? 28 : window.innerWidth <= 980 ? 88 : 170);
+          const rotateY = normalized * (window.innerWidth <= 720 ? 16 : 22);
+          const rotateZ = normalized * (window.innerWidth <= 720 ? 3 : 5);
+          const translateZ = isActive ? 120 : -40 - abs * 42;
+          const scale = isActive ? 1 : 0.96 - abs * 0.04;
+
+          card.style.transform = `translate(-50%, 0) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${scale})`;
+          card.style.zIndex = String(100 - abs + (isActive ? 20 : 0));
+          card.style.opacity = abs > 3 ? "0" : "1";
+          card.classList.toggle("is-active", isActive);
+          card.classList.toggle("is-inactive", !isActive);
+          card.setAttribute("aria-selected", String(isActive));
+          card.tabIndex = isActive ? 0 : -1;
+        });
+      }
+
+      function createProjectCard(project, index) {
         const card = document.createElement("article");
         card.className = "project-card";
-        card.tabIndex = 0;
+        card.tabIndex = index === 0 ? 0 : -1;
         card.setAttribute("role", "button");
         card.setAttribute("aria-label", `Open details for ${project.title}`);
+        card.setAttribute("aria-selected", String(index === 0));
 
         const preview = document.createElement("div");
         preview.className = "project-preview";
@@ -396,17 +425,63 @@
           <div class="tech-tags">
             ${project.technologies.map((tag) => `<span>${tag}</span>`).join("")}
           </div>
+          <div class="project-card-actions">
+            <button type="button" class="project-explore-button">Explore Project</button>
+          </div>
         `;
 
+        const exploreButton = content.querySelector(".project-explore-button");
         const openProject = () => openProjectDetails(project);
-        card.addEventListener("click", openProject);
-        card.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
+
+        card.addEventListener("click", (event) => {
+          if (event.target.closest(".project-explore-button")) {
+            event.stopPropagation();
             openProject();
+            return;
+          }
+
+          const currentIndex = Number(card.dataset.index);
+          if (currentIndex !== selectedProjectIndex) {
+            selectedProjectIndex = currentIndex;
+            updateProjectStack();
           }
         });
 
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            const currentIndex = Number(card.dataset.index);
+            if (currentIndex === selectedProjectIndex) {
+              openProject();
+            } else {
+              selectedProjectIndex = currentIndex;
+              updateProjectStack();
+            }
+          }
+
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            selectedProjectIndex = (selectedProjectIndex + 1) % projects.length;
+            updateProjectStack();
+            const nextCard = projectGrid.querySelector(`.project-card[data-index="${selectedProjectIndex}"]`);
+            if (nextCard) nextCard.focus();
+          }
+
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            selectedProjectIndex = (selectedProjectIndex - 1 + projects.length) % projects.length;
+            updateProjectStack();
+            const prevCard = projectGrid.querySelector(`.project-card[data-index="${selectedProjectIndex}"]`);
+            if (prevCard) prevCard.focus();
+          }
+        });
+
+        exploreButton.addEventListener("click", (event) => {
+          event.stopPropagation();
+          openProject();
+        });
+
+        card.dataset.index = String(index);
         card.appendChild(preview);
         card.appendChild(content);
         return card;
@@ -590,11 +665,56 @@
         if (event.key === "Escape" && projectModal.classList.contains("is-visible")) {
           closeProjectDetails();
         }
+
+        if (document.activeElement && document.activeElement.classList.contains("project-card") && (event.key === "ArrowRight" || event.key === "ArrowLeft")) {
+          return;
+        }
       });
 
-      projects.forEach((project) => {
-        projectGrid.appendChild(createProjectCard(project));
+      projectGrid.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          selectedProjectIndex = (selectedProjectIndex + 1) % projects.length;
+          updateProjectStack();
+          const nextCard = projectGrid.querySelector(`.project-card[data-index="${selectedProjectIndex}"]`);
+          if (nextCard) nextCard.focus();
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          selectedProjectIndex = (selectedProjectIndex - 1 + projects.length) % projects.length;
+          updateProjectStack();
+          const prevCard = projectGrid.querySelector(`.project-card[data-index="${selectedProjectIndex}"]`);
+          if (prevCard) prevCard.focus();
+        }
       });
+
+      projectGrid.addEventListener("touchstart", (event) => {
+        if (event.touches.length) {
+          touchStartX = event.touches[0].clientX;
+        }
+      }, { passive: true });
+
+      projectGrid.addEventListener("touchend", (event) => {
+        const touchEndX = event.changedTouches[0].clientX;
+        const delta = touchEndX - touchStartX;
+
+        if (Math.abs(delta) < 40) return;
+
+        if (delta < 0) {
+          selectedProjectIndex = (selectedProjectIndex + 1) % projects.length;
+        } else {
+          selectedProjectIndex = (selectedProjectIndex - 1 + projects.length) % projects.length;
+        }
+
+        updateProjectStack();
+      }, { passive: true });
+
+      projects.forEach((project, index) => {
+        projectGrid.appendChild(createProjectCard(project, index));
+      });
+
+      updateProjectStack();
     </script>
   </body>
 </html>
