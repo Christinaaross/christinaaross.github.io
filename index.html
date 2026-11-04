@@ -65,24 +65,25 @@
         <section class="experience-section" aria-labelledby="experience-heading">
           <div class="section-header">
             <h2 id="experience-heading">Experience</h2>
-            <span class="position-count">02 Positions</span>
+            <span class="position-count">03 Positions</span>
           </div>
 
           <div class="experience-list">
             <details class="experience-item">
               <summary>
                 <div class="summary-main">
-                  <p class="job-title">Data Engineering Intern</p>
-                  <p class="company-line">LS Direct · Suffern, NY</p>
+                  <p class="job-title">IT Administrator</p>
+                  <p class="company-line">LS Direct · August 2026 – Present</p>
                 </div>
                 <span class="chevron" aria-hidden="true"></span>
               </summary>
               <div class="details-content">
                 <ul>
-                  <li>Built and maintained data pipelines to support reporting and operational workflows.</li>
-                  <li>Collaborated with cross-functional teams to clean, validate, and transform data for analytics use cases.</li>
-                  <li>Improved process efficiency by documenting systems, identifying bottlenecks, and supporting automation opportunities.</li>
-                  <li>Technologies: Python, SQL, ETL workflows, data validation, cloud tools, and reporting systems.</li>
+                  <li>Provide technical support and troubleshoot MFA authentication, VPN connectivity, Microsoft 365, and system access issues.</li>
+                  <li>Manage SFTP connections, configure client directory permissions, troubleshoot file transfers, and support server migrations.</li>
+                  <li>Communicate directly with clients to diagnose connectivity issues, identify root causes, and implement effective technical solutions.</li>
+                  <li>Develop and optimize an automated data removal dashboard to streamline removal requests, reduce manual processing, and improve workflow accuracy.</li>
+                  <li>Administer user accounts, access permissions, and client onboarding/offboarding processes to maintain secure and efficient access management.</li>
                 </ul>
               </div>
             </details>
@@ -90,17 +91,34 @@
             <details class="experience-item">
               <summary>
                 <div class="summary-main">
-                  <p class="job-title">IT Intern / Associate</p>
-                  <p class="company-line">Information Technology</p>
+                  <p class="job-title">Data Engineering Intern</p>
+                  <p class="company-line">LS Direct · ETL Team · May 2026 – Aug. 2026</p>
                 </div>
                 <span class="chevron" aria-hidden="true"></span>
               </summary>
               <div class="details-content">
                 <ul>
-                  <li>Supported day-to-day IT operations, troubleshooting technical issues and coordinating solutions for users.</li>
-                  <li>Helped maintain documentation, device support processes, and service requests to improve responsiveness.</li>
-                  <li>Worked with teams to improve system reliability, user support workflows, and operational efficiency.</li>
-                  <li>Technologies: troubleshooting workflows, system support, documentation, and service operations.</li>
+                  <li>Designed and developed production ETL pipelines using Python, Apache Airflow, BigQuery, and Google Cloud Storage to ingest and transform thousands of variables from two national datasets from U.S. Census API querying of BigQuery Census datasets.</li>
+                  <li>Utilized Phoenix, BettrData and MySQL to onboard clients by mapping, validating quality, and ingesting customer data for downstream analytics.</li>
+                  <li>Debugged and optimized Airflow DAGs and data pipelines across GCS, BigQuery, and dbt.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="experience-item">
+              <summary>
+                <div class="summary-main">
+                  <p class="job-title">Undergraduate Research Assistant</p>
+                  <p class="company-line">Rutgers University – Camden Campus, Department of Physics · May 2025 – Aug. 2025</p>
+                </div>
+                <span class="chevron" aria-hidden="true"></span>
+              </summary>
+              <div class="details-content">
+                <ul>
+                  <li>Enhanced Python scripts to improve the process of hundreds of molecular simulation outputs in agarose chain separation.</li>
+                  <li>Improved analysis workflow by automating repetitive data processing tasks.</li>
+                  <li>Collaborated with graduate researchers to integrate code for machine learning biopolymer analysis.</li>
+                  <li>Featured on the <a href="https://sites.rutgers.edu/fang-lab/team/" target="_blank" rel="noreferrer">Fang Lab team page</a> (Rutgers University).</li>
                 </ul>
               </div>
             </details>
@@ -144,6 +162,36 @@
             </a>
           </div>
         </section>
+
+        <section class="certifications-section" aria-labelledby="certifications-heading">
+          <div class="section-header">
+            <h2 id="certifications-heading">Certifications</h2>
+            <span class="position-count">01 Certification</span>
+          </div>
+
+          <div class="experience-list">
+            <details class="experience-item">
+              <summary>
+                <div class="summary-main">
+                  <p class="job-title">Develop Generative AI Applications: Get Started</p>
+                  <p class="company-line">IBM · Coursera · Oct. 2026</p>
+                </div>
+                <span class="chevron" aria-hidden="true"></span>
+              </summary>
+              <div class="details-content">
+                <ul>
+                  <li>Master the basics of GenAI and the LangChain framework, focusing on how prompt engineering and in-context learning enhance AI interactions.</li>
+                  <li>Apply prompt templates, chains, and agents to create flexible and context-aware AI applications using LangChain's modular approach.</li>
+                  <li>Develop a GenAI web application with Flask, integrating advanced features such as JSON output parsing for structured AI responses.</li>
+                  <li>Evaluate and compare different language models to select the most suitable for specific use cases, ensuring optimal performance and reliability.</li>
+                </ul>
+                <div class="cert-links">
+                  <a href="https://coursera.org/verify/CYQ5AQUZKXWO" target="_blank" rel="noreferrer">Verify on Coursera</a>
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
       </main>
     </div>
 
@@ -178,8 +226,7 @@
           description:
             "AI-powered web application using IBM watsonx.ai to generate structured responses.",
           technologies: ["Python", "Flask", "IBM watsonx.ai", "LangChain"],
-          github: "#",
-          demo: "#",
+          tabs: ["overview", "tech"],
           overview:
             "This application combines a lightweight Flask backend with AI-driven prompting to generate structured, useful outputs for end users.",
           features: [
@@ -197,8 +244,6 @@
           description:
             "Interactive 3D environment featuring animated characters, NPC behavior, and AI integration.",
           technologies: ["Three.js", "JavaScript", "WebGL", "GLTF"],
-          github: "#",
-          demo: "#",
           overview:
             "A collaborative 3D environment where users explore a scene featuring animated entities, behavioral systems, and visually rich interactions.",
           features: [
@@ -216,7 +261,6 @@
           description:
             "Secure collaboration platform for private messaging, file sharing, and trusted user workflows.",
           technologies: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Auth"],
-          github: "#",
           demo: "https://quietnets.vercel.app",
           overview:
             "QuietNets is a full-stack application focused on secure collaboration with private communication, controlled file-sharing, and reliable user access patterns.",
@@ -300,8 +344,6 @@
           description:
             "Engineered and tested a self-hosted malware detection pipeline integrated into QuietNets, featuring secure file quarantine, automated scanning, and access controls.",
           technologies: ["Python", "ClamAV", "Linux", "FastAPI", "Supabase"],
-          github: "#",
-          demo: "https://quietnets.vercel.app",
           overview:
             "This project addresses the core security challenge of safely handling uploaded files in a web application. I designed and implemented a self-hosted malware scanning pipeline for QuietNets that quarantines suspicious uploads, blocks unverified files, and enforces controlled release policies before content reaches end users.",
           subtitle: "Independent Security Engineering Project",
@@ -644,7 +686,7 @@
           { id: "security", label: "Security" },
           { id: "testing", label: "Testing" },
           { id: "tech", label: "Tech Stack" }
-        ];
+        ].filter((tab) => !currentProject.tabs || currentProject.tabs.includes(tab.id));
 
         projectDetailTabs.innerHTML = tabs
           .map(
@@ -792,8 +834,10 @@
         projectModalTitle.textContent = project.title;
         projectModalSubtitle.textContent = project.subtitle || project.description;
         projectModalCategory.textContent = project.category;
-        projectGithubLink.href = project.github;
-        projectDemoLink.href = project.demo;
+        projectGithubLink.href = project.github || "#";
+        projectGithubLink.hidden = !project.github;
+        projectDemoLink.href = project.demo || "#";
+        projectDemoLink.hidden = !project.demo;
         renderTabs();
         renderTabContent();
         projectModal.classList.add("is-visible");
