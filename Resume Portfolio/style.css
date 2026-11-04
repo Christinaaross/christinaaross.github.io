@@ -185,6 +185,10 @@ h1 {
   color: var(--muted);
 }
 
+.about-section p + p {
+  margin-top: 1rem;
+}
+
 .experience-section {
   padding-top: 56px;
 }
