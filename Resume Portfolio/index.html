@@ -186,94 +186,91 @@
           previewLabel: "3D"
         },
         {
-          id: "malware-detection-file-security",
-          title: "Malware Detection & File Security",
-          category: "CYBERSECURITY",
+          id: "quietnets-productivity-platform",
+          title: "QuietNets — Productivity & Engineering Platform",
+          category: "FULL-STACK DEVELOPMENT",
           description:
-            "Engineered and tested a self-hosted malware detection pipeline integrated into QuietNets, featuring secure file quarantine, automated scanning, and access controls.",
-          technologies: ["Python", "ClamAV", "Linux", "FastAPI", "Supabase"],
+            "A personal productivity workspace and evolving full-stack engineering platform, built to unify study tools and explore modern technologies through real-world implementation.",
+          technologies: ["Next.js", "React", "TypeScript", "Node.js", "Supabase", "PostgreSQL", "Vercel", "Oracle Cloud"],
           github: "#",
           demo: "https://quietnets.vercel.app",
           overview:
-            "This project addresses the core security challenge of safely handling uploaded files in a web application. I designed and implemented a self-hosted malware scanning pipeline for QuietNets that quarantines suspicious uploads, blocks unverified files, and enforces controlled release policies before content reaches end users.",
-          subtitle: "Independent Security Engineering Project",
+            "QuietNets began as an effort to build the study and productivity environment I wished I had as a student. It has evolved into a continuously developing application where I can integrate and experiment with technologies I am learning.",
+          subtitle: "Personal Project · Ongoing Development",
           realWorld:
-            "QuietNets is the working full-stack application where this security pipeline was implemented and tested. The system protects user file uploads within the application by validating content and enforcing controlled access before files are released.",
+            "QuietNets serves as a working full-stack platform for exploring modern web tools, deployment patterns, backend services, and secure application practices in a real-world product environment.",
           sections: {
             overview: {
-              heading: "Project overview",
+              heading: "Overview",
               body: [
-                "Designed and deployed a self-hosted malware detection pipeline that scans uploaded files before allowing access to them.",
-                "The system combines asynchronous background processing, file quarantine, antivirus scanning, and database-level access controls to prevent malicious or unverified files from reaching users.",
-                "The workflow was implemented directly in QuietNets to protect real application file uploads while preserving a secure and auditable release process."
+                "QuietNets began as an effort to build the study and productivity environment I wished I had as a student. Rather than relying on disconnected applications, I wanted a centralized workspace for studying, organizing tasks, managing resources, and staying focused.",
+                "Over time, the project evolved into something more: a continuously developing platform where I can apply new engineering concepts, experiment with technologies, and integrate the systems I build into a functioning application.",
+                "While the malware scanner is one integrated security component, QuietNets is primarily a personal productivity and engineering platform designed to support experimentation, workflow organization, and real-world full-stack development."
               ],
               bullets: [
-                "Developed a Python-based scanning worker and REST API for secure file handling.",
-                "Integrated ClamAV antivirus scanning with automated signature updates.",
-                "Implemented quarantine, file verification, and secure release workflows.",
-                "Deployed and hardened a Linux scanning environment for controlled execution."
+                "Built a full-stack productivity workspace to consolidate study workflows, task management, and project organization.",
+                "Used a modern frontend and backend stack to support a responsive, product-oriented user experience.",
+                "Designed the application as an engineering playground for testing infrastructure, tooling, and deployment patterns.",
+                "Integrated secure application practices and security-focused features as part of the broader platform, without making security the sole purpose of the project."
               ],
               quietNets: {
-                title: "Real-World Application: QuietNets",
-                text: "This system protects file uploads in the QuietNets application, where files are validated in a secure pipeline before they are released to downstream users. The solution was designed to be practical, measurable, and production-aware while keeping the architecture focused on security and reliability."
+                title: "Engineering Playground",
+                text: "QuietNets provides a real-world environment for exploring and validating new technologies, from infrastructure choices to developer workflows. It allows me to test ideas in a working application while keeping the product grounded in practical use and continued learning."
               }
             },
             architecture: {
-              heading: "System architecture",
+              heading: "Architecture & Technologies",
               flow: [
-                { title: "File upload", subtitle: "Next.js / Vercel", icon: "⇪" },
-                { title: "Private quarantine", subtitle: "Supabase Storage + PostgreSQL", icon: "🔒" },
-                { title: "Background worker", subtitle: "Oracle Linux · Python · FastAPI", icon: "⚙️" },
-                { title: "ClamAV scanning", subtitle: "Signature-based detection", icon: "🛡️" },
-                { title: "Verified release", subtitle: "Approved file or block", icon: "✅" }
+                { title: "Frontend", subtitle: "Next.js · React · TypeScript", icon: "▣" },
+                { title: "Backend", subtitle: "Node.js · API services", icon: "⚙️" },
+                { title: "Database", subtitle: "Supabase · PostgreSQL", icon: "🗄️" },
+                { title: "Authentication", subtitle: "Supabase Auth", icon: "🔐" },
+                { title: "Cloud", subtitle: "Vercel · Oracle Cloud", icon: "☁️" },
+                { title: "Security", subtitle: "File validation and malware scanning", icon: "🛡️" }
               ]
             },
             security: {
-              heading: "Security engineering controls",
+              heading: "Engineering Highlights",
               items: [
-                ["Fail-closed architecture", "Unscanned, suspicious, or failed uploads cannot be released."],
-                ["HMAC-SHA256 authentication", "Signed worker requests with timestamps, key IDs, nonces, and replay protection."],
-                ["Least-privilege storage", "Private quarantine, Supabase Row Level Security, and server-only credentials."],
-                ["Linux hardening", "SELinux enforcing, local scanner binding, restricted Unix socket, and systemd services."],
-                ["File validation", "Size and content checks, archive protection, and SHA-256 integrity verification."],
-                ["Recovery controls", "Job leases, bounded retries, and recovery flow for worker or scanner interruptions."]
+                ["Full-Stack Development", "Built a responsive application using Next.js, React, TypeScript, and Node.js-based server functionality."],
+                ["Backend & Database Architecture", "Integrated Supabase and PostgreSQL with authentication, data persistence, and row-level access controls."],
+                ["Cloud Infrastructure", "Deployed the frontend through Vercel and integrated Oracle Cloud infrastructure for backend services."],
+                ["Authentication & Authorization", "Implemented secure application patterns to manage access and protect user-facing workflows."],
+                ["Progressive Web App Capabilities", "Implemented PWA features to support installation on desktop and mobile devices."],
+                ["Cybersecurity Integration", "Incorporated malware-focused security checks as one part of a broader platform designed for experimentation and product development."]
               ]
             },
             testing: {
-              heading: "Security validation",
+              heading: "Engineering Playground",
               stats: [
-                ["75/75", "Scanner tests"],
-                ["50/50", "End-to-end tests"],
-                ["30/30", "Database policy tests"],
-                ["20/20", "Security unit tests"]
+                ["Ongoing", "Platform development"],
+                ["Iterative", "Feature testing"],
+                ["Practical", "Real deployment"],
+                ["Flexible", "Technology exploration"]
               ],
               adversarial: [
-                "EICAR antivirus test files, including ZIP-contained samples",
-                "Encrypted archives and decompression-bomb attempts",
-                "File type and content mismatches",
-                "Concurrent file uploads",
-                "Scanner outages, retry behavior, and crash recovery",
-                "Unauthorized file access and verified-file replacement attempts"
+                "Testing new architecture patterns in a live app context",
+                "Evaluating frontend and backend integration choices",
+                "Exploring secure design patterns in a working product",
+                "Assessing new tooling and deployment workflows",
+                "Building a sandbox for experimentation without sacrificing usability"
               ],
-              note: "These are recorded results from the project’s test runs, not a formal security certification."
+              note: "The project is designed as an evolving engineering environment, not a static demo."
             },
             tech: {
-              heading: "Technologies and their roles",
+              heading: "Architecture & Technologies",
               rows: [
-                ["Python", "Background scanning worker and service orchestration."],
-                ["FastAPI / Uvicorn", "Local scanning API and request handling."],
-                ["ClamAV / clamd", "Signature-based malware detection."],
-                ["freshclam", "Antivirus signature updates."],
-                ["Oracle Linux", "Self-hosted scanning infrastructure."],
-                ["systemd", "Worker and scanner service management."],
-                ["SELinux", "Operating system access restrictions."],
-                ["Supabase / PostgreSQL", "Quarantine metadata, job state, and RLS."],
-                ["Next.js / TypeScript", "Secure upload and job-management endpoints."],
-                ["HMAC-SHA256", "Authenticated worker communications and request integrity." ]
+                ["Frontend", "Next.js, React, TypeScript"],
+                ["Backend", "Node.js, server-side API routes"],
+                ["Database", "PostgreSQL, Supabase"],
+                ["Authentication", "Supabase Auth, secure access patterns"],
+                ["Cloud", "Vercel, Oracle Cloud"],
+                ["Security", "Malware scanning, file validation, application hardening"],
+                ["Future exploration", "AI/ML, automation, additional integrations"]
               ]
             }
           },
-          previewLabel: "🛡️"
+          previewLabel: "QN"
         }
       ];
 
