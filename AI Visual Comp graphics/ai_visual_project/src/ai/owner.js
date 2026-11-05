@@ -103,12 +103,46 @@ export function createOwner(physics, opts) {
   const isUp = () => UP_MOTORS.has(state.motor);
   const here = () => ({ x: state.x, z: state.z });
 
+  function roomAreaOf(p) {
+    if (!p) return 'center';
+    const x = p.x ?? p[0] ?? 0;
+    const z = p.z ?? p[2] ?? 0;
+    if (z < -1.25) return x < -1 ? 'northWest' : 'northEast';
+    if (z > 1.25) return x < 0 ? 'southWest' : 'southEast';
+    if (x < -1.25) return 'west';
+    if (x > 1.25) return 'east';
+    return 'center';
+  }
+
+  function searchGoalFor(p) {
+    const area = roomAreaOf(p);
+    const anchors = {
+      northWest: [{ x: -2.3, z: -2.1 }, { x: -1.2, z: -1.8 }, { x: -0.8, z: -0.6 }],
+      northEast: [{ x: 1.8, z: -2.2 }, { x: 2.3, z: -1.3 }, { x: 0.8, z: -1.2 }],
+      southWest: [{ x: -1.8, z: 2.2 }, { x: -0.7, z: 2.0 }, { x: -1.1, z: 1.0 }],
+      southEast: [{ x: 2.0, z: 2.3 }, { x: 2.4, z: 1.3 }, { x: 0.8, z: 1.8 }],
+      west: [{ x: -2.6, z: -0.5 }, { x: -2.1, z: 1.0 }, { x: -1.0, z: -1.8 }],
+      east: [{ x: 2.6, z: 0.8 }, { x: 2.2, z: -1.1 }, { x: 1.0, z: 2.2 }],
+      center: [{ x: 0.6, z: 0.3 }, { x: -0.6, z: 1.4 }, { x: 1.8, z: -1.3 }],
+    };
+    const candidates = anchors[area] ?? anchors.center;
+    let best = { x: p.x, z: p.z };
+    let bestD = Infinity;
+    for (const candidate of candidates) {
+      const d = flat(candidate, p);
+      if (d < bestD) { bestD = d; best = candidate; }
+    }
+    return best;
+  }
+
   /** The hiding spot whose check point is nearest p, skipping the ones checked already. */
   function nearestSpot(p, within = Infinity) {
     let best = null, bestD = within;
     for (const v of HIDING_VOLUMES) {
       if (state.checked.has(v.id)) continue;
-      const d = flat({ x: v.checkFrom[0], z: v.checkFrom[2] }, p);
+      const center = { x: (v.min[0] + v.max[0]) / 2, z: (v.min[2] + v.max[2]) / 2 };
+      const targetBias = v.id === 'underBed' && roomAreaOf(p) === 'west' ? -0.5 : 0;
+      const d = flat(center, p) + targetBias;
       if (d < bestD) { bestD = d; best = v; }
     }
     return best;
@@ -128,15 +162,22 @@ export function createOwner(physics, opts) {
 
   /** Between tasks while up: the behaviour tree's action says what next. */
   function decide() {
-    const target = brain.getTarget();
+    const target = brain.getTarget() ?? (brain.getLastSeenCat() ? brain.getLastSeenCat() : null);
     const at = target ? { x: target[0], z: target[2] } : null;
     if ((state.action === 'search' || state.action === 'investigate') && at) {
-      state.noise = at;
-      return walkTo(at, 'noise');
+      const routeGoal = searchGoalFor(at);
+      state.noise = routeGoal;
+      return walkTo(routeGoal, 'noise');
     }
     if (state.action === 'checkHidingSpot') {
-      const v = nearestSpot(at ?? here());
+      const focus = at ?? (brain.getLastSeenCat() ? { x: brain.getLastSeenCat()[0], z: brain.getLastSeenCat()[2] } : here());
+      const v = nearestSpot(focus, 3.5);
       if (v) return checkSpot(v);
+      if (focus) {
+        const routeGoal = searchGoalFor(focus);
+        state.noise = routeGoal;
+        return walkTo(routeGoal, 'noise');
+      }
       brain.clearNoise();
     }
     return walkTo(BEDSIDE, 'bed');
@@ -202,6 +243,7 @@ export function createOwner(physics, opts) {
     const c = cat.body.position;
     if (state.seesCat) {
       state.lastSeen = { x: c.x, z: c.z };
+      brain.trackLastSeenCat([c.x, 0, c.z]);
       state.lostFor = 0;
       if (isUp()) {
         wake.raise(1);
