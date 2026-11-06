@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=20261104" />
+    <link rel="stylesheet" href="style.css?v=20261106b" />
   </head>
   <body>
     <div class="page-shell">
@@ -33,8 +33,8 @@
 
           <nav class="social-links" aria-label="Links">
             <a href="https://www.linkedin.com/in/christina-a-ross-0234b2216/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="icon-circle">in</a>
-            <a href="#" aria-label="Resume" class="icon-circle">cv</a>
             <a href="https://github.com/Christinaaross" target="_blank" rel="noreferrer" aria-label="GitHub" class="icon-circle">gh</a>
+            <a href="#" id="email-link" aria-label="Email" class="icon-circle">@</a>
           </nav>
 
         </div>
@@ -101,7 +101,7 @@
                   <li><strong>Cloud data integration:</strong> Connected Census API ingestion with Google Cloud Storage and BigQuery external tables, making public datasets available for transformation and analysis.</li>
                   <li><strong>Data transformation:</strong> Built and staged dbt models to clean, validate, and organize raw data into structured datasets for analytical use.</li>
                   <li><strong>Data discovery and quality:</strong> Reviewed data fields and relationships between tables to assess dataset suitability and identify quality issues before downstream use.</li>
-                  <li><strong>Client onboarding and migration support:</strong> Supported a client&rsquo;s transition to a new system by updating ingestion configurations, processing historical files, validating incoming data, and confirming that the new feed loaded successfully.</li>
+                  <li><strong>Client onboarding and migration support:</strong> Supported a client&rsquo;s transition to STORIS by updating ingestion configurations, processing historical files, validating incoming data, and confirming that the new feed loaded successfully.</li>
                   <li><strong>Testing and debugging:</strong> Investigated data and code issues across ingestion and transformation workflows, debugged pipeline failures, and verified that files and records loaded correctly.</li>
                 </ul>
               </div>
@@ -158,11 +158,6 @@
 
           <div class="project-pagination" id="project-pagination" aria-label="Project carousel pages"></div>
 
-          <div class="projects-footer">
-            <a href="#" class="view-all-link" aria-label="View all projects">
-              View All Projects <span aria-hidden="true">→</span>
-            </a>
-          </div>
         </section>
 
         <section class="certifications-section" aria-labelledby="certifications-heading">
@@ -220,6 +215,15 @@
     </div>
 
     <script>
+      // Assemble the email address at runtime so it isn't plain text in the HTML.
+      (function () {
+        const emailLink = document.getElementById("email-link");
+        if (!emailLink) return;
+        const address = ["an.christina.ross", "gmail.com"].join(String.fromCharCode(64));
+        emailLink.href = "mailto:" + address;
+        emailLink.title = address;
+      })();
+
       const projects = [
         {
           id: "genai-flask-application",
@@ -246,6 +250,50 @@
           description:
             "Interactive 3D environment featuring animated characters, NPC behavior, and AI integration.",
           technologies: ["Three.js", "JavaScript", "WebGL", "GLTF"],
+          tabs: ["overview", "contribution"],
+          demo: "https://antarathapliyal31.github.io/ai_visual_project/harness/play.html",
+          contributionHtml: `
+            <h4>Owner NPC behavior</h4>
+            <div class="modal-section">
+              <h4>The Problem</h4>
+              <p>Make the owner react realistically to the cat’s noise—wake up gradually, investigate, and spot the cat only when it’s visible.</p>
+            </div>
+            <div class="modal-section">
+              <h4>My Approach</h4>
+              <ul>
+                <li><strong>Wake stages:</strong> Connect the wake meter to five stages: asleep → stirring → sitting up → standing → awake.</li>
+                <li><strong>Add behavior:</strong> Make the owner investigate noises, search when they’re loud, check hiding spots, and return to bed when it’s quiet.</li>
+              </ul>
+            </div>
+            <div class="modal-section">
+              <h4>The Challenge</h4>
+              <p>The challenge is making the NPC investigate the sound and then find the cat realistically.</p>
+              <ul>
+                <li><strong>Go toward the sound:</strong> Save where the noise happened and move the owner there.</li>
+                <li><strong>Look for the cat:</strong> Check whether the cat is in view and whether furniture blocks it.</li>
+                <li><strong>If spotted:</strong> Follow the cat, updating its location while visible.</li>
+                <li><strong>If it hides:</strong> Search its last visible location and nearby hiding spots, then return to bed if nothing is found.</li>
+              </ul>
+            </div>
+            <div class="modal-section">
+              <h4>How It Works</h4>
+              <ul>
+                <li><strong>How does the NPC wake up?</strong> Noise increases a wake meter, moving it through asleep, stirring, sitting up, standing, and awake.</li>
+                <li><strong>How does the NPC decide what to do?</strong> A behavior tree selects actions based on its wake stage and noise.</li>
+                <li><strong>How does it see the cat?</strong> A viewing cone is for direction, and line-of-sight rays check whether furniture blocks the cat.</li>
+                <li><strong>How does it move around furniture?</strong> It uses A* pathfinding between 12 waypoints.</li>
+                <li><strong>Does distance affect its reaction?</strong> Yes—the same noise has a stronger effect near the bed than across the room.</li>
+              </ul>
+            </div>
+            <div class="modal-section">
+              <h4>Improvements to the NPC’s Behavior</h4>
+              <ul>
+                <li><strong>Better error handling:</strong> Improve the behavior tree so the owner can recover when a path is blocked, a destination is unreachable, or an action fails.</li>
+                <li><strong>Track the cat’s last known position:</strong> Update the cat’s location while it’s visible. When it hides, investigate where it was last seen instead of knowing its hidden location.</li>
+                <li><strong>More realistic searching:</strong> Check nearby hiding spots, then return to bed if the cat isn’t found and no new noises occur.</li>
+              </ul>
+            </div>
+          `,
           overview:
             "A collaborative 3D environment where users explore a scene featuring animated entities, behavioral systems, and visually rich interactions.",
           features: [
@@ -254,6 +302,9 @@
             "Asset-driven design with GLTF models",
             "Interactive environment built for exploration and play"
           ],
+          previewImage: "3d-game-preview.jpg",
+          previewAlt: "3D game scene of the owner chasing the cat through an isometric bedroom",
+          previewPosition: "center 55%",
           previewLabel: "3D"
         },
         {
@@ -261,18 +312,18 @@
           title: "QuietNets",
           category: "FULL STACK",
           description:
-            "Secure collaboration platform for private messaging, file sharing, and trusted user workflows.",
+            "Productivity and organization platform with study tools, user authentication, and secure cloud file storage.",
           technologies: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Auth"],
           demo: "https://quietnets.vercel.app",
           overview:
-            "QuietNets is a full-stack application focused on secure collaboration with private communication, controlled file-sharing, and reliable user access patterns.",
+            "QuietNets is a full-stack application with study and organization tools, user authentication, and secure cloud file storage.",
           subtitle: "Security-first collaboration platform",
           sections: {
             overview: {
               heading: "Project overview",
               body: [
                 "QuietNets was designed as a secure collaboration and file-sharing platform with strong emphasis on user trust, access control, and privacy-aware workflows.",
-                "The application brings together messaging, secure content exchange, and user account systems in a single experience shaped around reliability and safe handling of uploaded data.",
+                "The application brings together study and organization tools, file storage, and user account systems in a single experience shaped around reliability and safe handling of uploaded data.",
                 "I focused on designing a platform that balances usability with production-level security practices and system resilience."
               ],
               bullets: [
@@ -283,7 +334,7 @@
               ],
               quietNets: {
                 title: "Product focus",
-                text: "QuietNets is a user-facing platform that combines secure communication and file handling in an approachable, collaborative experience while maintaining a strong engineering emphasis on safety and reliability."
+                text: "QuietNets is a user-facing platform that combines study and organization tools with secure file handling in an approachable experience while maintaining a strong engineering emphasis on safety and reliability."
               }
             },
             architecture: {
@@ -293,7 +344,7 @@
                 { title: "API layer", subtitle: "Secure request handling", icon: "⚙️" },
                 { title: "Data storage", subtitle: "Supabase + PostgreSQL", icon: "🗄️" },
                 { title: "Access control", subtitle: "RLS and auth policies", icon: "🔐" },
-                { title: "User workflows", subtitle: "Messaging and file sharing", icon: "✅" }
+                { title: "User workflows", subtitle: "Study tools and file storage", icon: "✅" }
               ]
             },
             security: {
@@ -337,6 +388,8 @@
               ]
             }
           },
+          previewImage: "quietnets-preview.jpg",
+          previewAlt: "QuietNets install page with setup steps for iPhone, Android, Windows, and Mac",
           previewLabel: "QN"
         },
         {
@@ -426,6 +479,52 @@
             }
           },
           previewLabel: "🛡️"
+        },
+        {
+          id: "netscope",
+          title: "NetScope",
+          cardSubtitle: "Network Packet Analyzer",
+          modalTitle: "NetScope — Network Packet Analyzer",
+          subtitle: "",
+          description:
+            "A Python tool that turns packet captures into readable traffic summaries, groups network conversations, and flags TCP resets and unanswered connection attempts.",
+          technologies: ["Python", "Scapy", "Streamlit", "IPv4/IPv6"],
+          tabs: ["overview"],
+          cardButtonLabel: "View Project →",
+          github: "https://github.com/Christinaaross/Network-Packet-Analyzer",
+          githubLabel: "View Source on GitHub",
+          overviewHtml: `
+            <p>NetScope helps users inspect captured network traffic through a simple Streamlit dashboard. It reads <code>.pcap</code> and <code>.pcapng</code> files, organizes packet metadata into conversations, and highlights basic TCP connectivity issues.</p>
+            <div class="modal-section">
+              <h4>Why I Built It</h4>
+              <p>My IT work involves troubleshooting client connectivity and secure file transfers. I built NetScope to deepen my understanding of networking protocols, strengthen my Python skills, and explore how packet-level evidence can support troubleshooting.</p>
+            </div>
+            <div class="modal-section">
+              <h4>What It Does</h4>
+              <ul>
+                <li><strong>Parses packet captures:</strong> Reads <code>.pcap</code> and <code>.pcapng</code> files using Scapy, supporting both IPv4 and IPv6.</li>
+                <li><strong>Extracts packet metadata:</strong> Identifies source and destination IP addresses, ports, timestamps, protocols, and TCP flags.</li>
+                <li><strong>Groups conversations:</strong> Organizes related packets into flows so users can follow communication between endpoints.</li>
+                <li><strong>Highlights TCP issues:</strong> Flags TCP resets and SYN packets without a matching SYN-ACK in the capture.</li>
+                <li><strong>Displays and exports results:</strong> Presents traffic summaries and diagnostic findings in Streamlit, with JSON and HTML report exports.</li>
+              </ul>
+            </div>
+            <div class="modal-section">
+              <h4>How It Works</h4>
+              <p>Uploaded captures are parsed into a consistent packet format, grouped into conversations, and evaluated using predefined diagnostic rules. The dashboard displays the resulting summaries and findings.</p>
+            </div>
+            <div class="modal-section">
+              <h4>Current Scope</h4>
+              <p>NetScope analyzes uploaded captures using rule-based diagnostics. Its findings describe what is visible in the capture; an unanswered connection attempt alone does not establish its cause or indicate malicious activity.</p>
+            </div>
+            <div class="modal-section">
+              <h4>Technologies</h4>
+              <p>Python · Scapy · Streamlit<br />Capture formats: PCAP / PCAPNG<br />Network support: IPv4 / IPv6<br />Report exports: JSON / HTML</p>
+            </div>
+          `,
+          previewImage: "netscope-preview.png",
+          previewAlt: "NetScope dashboard showing packet, flow, and findings summary",
+          previewLabel: "📡"
         }
       ];
 
@@ -555,19 +654,22 @@
 
         const preview = document.createElement("div");
         preview.className = "project-preview";
-        preview.innerHTML = `<span class="project-preview-icon">${project.previewLabel}</span>`;
+        preview.innerHTML = project.previewImage
+          ? `<img class="project-preview-image" src="${project.previewImage}" alt="${project.previewAlt || project.title}"${project.previewPosition ? ` style="object-position: ${project.previewPosition}"` : ""} loading="lazy" draggable="false" />`
+          : `<span class="project-preview-icon">${project.previewLabel}</span>`;
 
         const content = document.createElement("div");
         content.className = "project-content";
         content.innerHTML = `
-          <div class="project-category">${project.category}</div>
+          ${project.category ? `<div class="project-category">${project.category}</div>` : ""}
           <h3>${project.title}</h3>
+          ${project.cardSubtitle ? `<p class="project-card-subtitle">${project.cardSubtitle}</p>` : ""}
           <p>${project.description}</p>
           <div class="tech-tags">
             ${project.technologies.map((tag) => `<span>${tag}</span>`).join("")}
           </div>
           <div class="project-card-actions">
-            <button type="button" class="project-explore-button">Explore Project</button>
+            <button type="button" class="project-explore-button">${project.cardButtonLabel || "Explore Project"}</button>
           </div>
         `;
 
@@ -684,6 +786,7 @@
       function renderTabs() {
         const tabs = [
           { id: "overview", label: "Overview" },
+          { id: "contribution", label: "My Contribution" },
           { id: "architecture", label: "Architecture" },
           { id: "security", label: "Security" },
           { id: "testing", label: "Testing" },
@@ -714,11 +817,23 @@
         const sections = getProjectSections(currentProject);
         const sectionContent = sections[activeTab];
 
-        if (!sectionContent) return;
+        if (activeTab === "contribution") {
+          projectTabPanels.innerHTML = `
+            <div class="tab-panel active">
+              <div class="project-kicker">My Contribution</div>
+              ${currentProject.contributionHtml || ""}
+            </div>
+          `;
+          return;
+        }
+
+        if (!sectionContent && !(activeTab === "overview" && currentProject.overviewHtml)) return;
 
         const generated = [];
 
-        if (activeTab === "overview") {
+        if (activeTab === "overview" && currentProject.overviewHtml) {
+          generated.push(`<div class="tab-panel active">${currentProject.overviewHtml}</div>`);
+        } else if (activeTab === "overview") {
           generated.push(`
             <div class="tab-panel active">
               <div class="project-kicker">Overview</div>
@@ -833,9 +948,12 @@
       function openProjectDetails(project) {
         currentProject = project;
         activeTab = "overview";
-        projectModalTitle.textContent = project.title;
-        projectModalSubtitle.textContent = project.subtitle || project.description;
-        projectModalCategory.textContent = project.category;
+        projectModalTitle.textContent = project.modalTitle || project.title;
+        projectModalSubtitle.textContent = project.subtitle ?? project.description;
+        projectModalSubtitle.hidden = !projectModalSubtitle.textContent;
+        projectModalCategory.textContent = project.category || "";
+        projectModalCategory.hidden = !project.category;
+        projectGithubLink.textContent = project.githubLabel || "GitHub Repository";
         projectGithubLink.href = project.github || "#";
         projectGithubLink.hidden = !project.github;
         projectDemoLink.href = project.demo || "#";
